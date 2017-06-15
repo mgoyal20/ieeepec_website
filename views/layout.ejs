@@ -4,36 +4,171 @@
     <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-    <!--
-        Stylesheets and Preprocessors
-        ==============================
-
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
-    <!--STYLES-->
-    <!--STYLES END-->
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <!--=============== css  ===============--> 
+        <link type="text/css" rel="stylesheet" href="styles/reset.css">
+        <link type="text/css" rel="stylesheet" href="styles/plugins.css">
+        <link type="text/css" rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="/styles/angular-toastr.css">
+        <link rel="stylesheet" href="/styles/bootstrap.3.1.1.css">
+        <link rel="stylesheet" href="/styles/importer.css">
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="images/favicon.ico">
+    </head>
 
   <body>
-    <%- body %>
+    <!-- loader -->
+    <div class="loader">
+      <div id="movingBallG">
+        <div class="movingBallLineG"></div>
+        <div id="movingBallG_1" class="movingBallG"></div>
+      </div>
+    </div>
+    <!-- loader end -->
+    <!--================= main start ================-->
+        <div id="main">
+          <!--=============== header ===============--> 
+            <header>
+                <!-- header-inner  -->
+                <div class="header-inner">
+                    <!-- header logo -->
+                    <div class="logo-holder">
+                        <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    </div>
+                    <!-- header logo end -->
+                    <!-- mobile nav button -->
+                    <div class="nav-button-holder">
+                        <div class="nav-button vis-m"><span></span><span></span><span></span></div>
+                    </div>
+                    <!-- mobile nav button end -->
+                    <!-- navigation  -->
+                    <div class="nav-holder">
+                        <nav>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About us </a></li>
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/news">News</a></li>
+                                <li><a href="/gallery">Gallery</a></li>
+                                <li><a href="/signup">Membership</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- navigation  end -->
+                </div>
+                <!-- header-inner  end -->
+            </header>
+            <!--=============== wrapper ===============-->  
+            <div id="wrapper">
+                <!-- content-holder  -->
+                <div class="content-holder">
+
+                    <%- body %>
+                    
+                    <!-- content footer-->
+                    <div class="height-emulator"></div>
+                    <footer class="content-footer">
+                        <!--  container  --> 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Footer logo --> 
+                                    <div class="footer-item footer-logo">
+                                        <a href="index.html" class="ajax"><img src="images/footer-logo.png" alt=""></a>
+                                        <p>Our team takes over everything, from an idea and concept development to realization. We believe in traditions and incorporate them within our innovations.Client is the soul of the project.  </p>
+                                    </div>
+                                    <!-- Footer logo end --> 
+                                </div>
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Call</h4>
+                                        <ul>
+                                            <li><a href="#">+7(111)123456789</a></li>
+                                            <li><a href="#">+1(000)987654321</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Write</h4>
+                                        <ul>
+                                            <li><a href="#">yourmail@domain.com</a></li>
+                                            <li><a href="#">email@website.com</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info-->
+                                <!-- Footer info end--> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Visit</h4>
+                                        <ul>
+                                            <li><span>USA 27TH BROOKLYN NY</span></li>
+                                            <li> <a href="#" target="_blank">View on map</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                            </div>
+                            <!-- Footer copyright -->
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="footer-wrap">
+                                        <span class="copyright">  &#169; Monolit   2016.  All rights reserved.  
+                                        </span>
+                                        <span class="to-top">To Top</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Footer copyright end -->
+                        </div>
+                        <!--  container  end --> 
+                        <!-- Hover animation  -->
+                        <canvas class="particular"></canvas>
+                        <!-- Hover animation  end -->
+                    </footer>
+                    <!-- content footer end -->
+                    <!-- share  -->
+                    <div class="share-inner">
+                        <div class="share-container  isShare"  data-share="['facebook','googleplus','twitter','linkedin']"></div>
+                        <div class="close-share"></div>
+                    </div>
+                    <!-- share end -->
+                </div>
+                <!-- content-holder  end-->
+            </div>
+            <!-- wrapper end -->
+            <!-- Fixed footer -->
+            <footer class="fixed-footer">
+                <div class="footer-social">
+                    <ul>
+                        <li><a href="#" target="_blank" ><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-tumblr"></i></a></li>
+                    </ul>
+                </div>
+                <!-- Header  title --> 
+                <div class="footer-title">
+                    <h2><a  href="#"></a></h2>
+                </div>
+                <!-- Header  title  end-->
+            </footer>
+            <!-- Fixed footer end-->
+        </div>
+        <!-- Main end -->
+
+    
+    
 
 
 
@@ -59,6 +194,7 @@
     -->
 
     <!--TEMPLATES-->
+    
     <!--TEMPLATES END-->
 
 
@@ -86,6 +222,17 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.1.3.js"></script>
+    <script src="/js/dependencies/angular-bootstrap-file-field.min.js"></script>
+    <script src="/js/dependencies/angular-toastr.js"></script>
+    <script src="/js/dependencies/compareTo.module.js"></script>
+    <script src="/js/public/signup/SignupModule.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/public/signup/SignupController.js"></script>
+    <script src="/js/scripts.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

@@ -1,0 +1,160 @@
+<!-- Page title -->
+    <div class="dynamic-title">Sign Up</div>
+<!-- Page title  end--> 
+<!-- content  -->
+    <div class="content">
+        <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="images/bg/17.jpg" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2> Please <strong> SignUp </strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="signup.html">Signup</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+<!-- content end -->
+
+<!-- content  -->
+  <div class="content" ng-app="SignupModule" ng-controller="SignupController" ng-cloak>
+    <section>
+    <!-- SIGNUP FORM --> 
+    <form ng-submit="submitSignupForm()" id="sign-up-form" class="form-signin" name="signup" >
+      <h2 class="form-signin-heading">Create an account</h2>
+      <div class="row">
+
+        <!-- N A M E -->
+        <div class="col-md-12"><label>Your full name</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.name.$invalid && signup.name.$dirty}">
+          <input type="text" class="form-control" placeholder="e.g. Nikola Tesla" name="name" ng-model="signupForm.name" ng-maxlength="50" required>
+          <span class="help-block has-error" ng-if="signup.name.$dirty">
+            <span ng-show="signup.name.$error.required">Name is required.</span>
+            <span ng-show="signup.name.$error.maxlength">The name cannot be more than 50 characters.</span>
+          </span>
+        </div>
+
+        <!-- S I D -->
+        <div class="col-md-12"><label>Your SID</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.sid.$invalid && signup.sid.$dirty}">
+          <input type="number" class="form-control" placeholder="e.g. 15103087" name="sid" ng-model="signupForm.sid" ng-maxlength="8" ng-minlength="8" required>
+          <span class="help-block has-error" ng-if="signup.sid.$dirty">
+            <span ng-show="signup.sid.$error.required">SID is required.</span>
+            <span ng-show="signup.sid.$error.maxlength">Invalid SID</span>
+            <span ng-show="signup.sid.$error.minlength">The SID should be of 8 digits.</span>
+          </span>
+        </div>
+
+        <!-- Y E A R -->
+        <div><label>Your Year</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.year.$invalid && signup.year.$dirty}">
+          <select type="number" class="form-control" placeholder="" name="year" ng-model="signupForm.year" required>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+          </select>
+          <span class="help-block has-error" ng-if="signup.year.$dirty">
+            <span ng-show="signup.year.$error.required">Year is required.</span>
+          </span>
+        </div>
+
+        <!-- B R A N C H -->
+        <div><label>Your Branch</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.branch.$invalid && signup.branch.$dirty}">  
+          <select type="text" class="form-control" placeholder="Branch" name="branch" ng-model="signupForm.branch" required>
+            <option value="AERO">Aeronautical</option>
+            <option value="CIVIL">Civil</option>
+            <option value="CSE">Computer Science</option>
+            <option value="ELEC">Electrical</option>
+            <option value="ECE">Electronics & Comm.</option>
+            <option value="MECH">Mechanical</option>
+            <option value="META">Metallurgy</option>
+            <option value="PROD">Production</option>
+          </select>
+          <span class="help-block has-error" ng-if="signup.branch.$dirty">
+            <span ng-show="signup.branch.$error.required">Branch is required.</span>
+          </span>
+        </div>
+
+        <!-- M E M B E R S H I P -->
+        <div class="col-md-12"><label>Your Membership Number</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.membership.$invalid && signup.membership.$dirty}">
+          <input type="number" class="form-control" placeholder="e.g. 12345678" name="membership" ng-model="signupForm.membership" ng-maxlength="8" ng-minlength="8" required>
+          <span class="help-block has-error" ng-if="signup.membership.$dirty">
+            <span ng-show="signup.membership.$error.required">Membership Number is required.</span>
+            <span ng-show="signup.membership.$error.maxlength">Invalid Membership Number</span>
+            <span ng-show="signup.membership.$error.minlength">The number should be of 8 digits</span>
+          </span>
+        </div>
+
+        <!-- E M A I L -->
+        <div class="col-md-12"><label>Your email address</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
+          <input type="email" class="form-control" placeholder="nikola@tesla.com" name="email" ng-model="signupForm.email" required >
+          <span class="help-block has-error" ng-if="signup.email.$dirty">
+            <span ng-show="signup.email.$error.required">Email address is required.</span>
+            <span ng-show="signup.email.$error.email">Not a valid email address.</span>
+          </span>
+        </div>
+
+        <!-- P H O N E -->
+        <div class="col-md-12"><label>Your Contact Number</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.phone.$invalid && signup.phone.$dirty}">
+          <input type="phone" class="form-control" placeholder="e.g. 9999999999" name="phone" ng-model="signupForm.phone" ng-maxlength="10" ng-mainlength="10" required>
+          <span class="help-block has-error" ng-if="signup.phone.$dirty">
+            <span ng-show="signup.phone.$error.required">Contact Number is required.</span>
+            <span ng-show="signup.phone.$error.maxlength">Invalid number</span>
+            <span ng-show="signup.phone.$error.minlength">The number should be of 10 digits.</span>
+          </span>
+        </div>
+
+        <!-- P A S S W O R D -->
+        <div class="col-md-12"><label>Choose a password</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.password.$invalid && signup.password.$dirty}">
+          <input type="password" class="form-control" placeholder="at least 6 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="6" compare-to="signupForm.confirmPassword" >
+          <span class="help-block has-error" ng-if="signup.password.$dirty">
+            <span ng-show="signup.password.$error.required">Password is required.</span>
+            <span ng-show="signup.password.$error.minlength">Password must be at least 6 characters.</span>
+          </span>
+        </div>
+
+        <!-- C O N F I R M  P A S S W O R D -->
+        <div class="col-md-12"><label>Confirm the password</label></div>
+        <div class="control-group form-group col-md-12">
+          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required>
+          <span class="help-block has-error" ng-if="signup.confirmation.$dirty">
+            <span ng-show="signup.password.$error.compareTo">Password must match.</span>
+            <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
+          </span>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!-- Disable signup button until the form has no errors -->
+      <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="signup.$invalid">
+        <span ng-show="!signupForm.loading">Create Account</span>
+        <span class="overlord-loading-spinner fa fa-spinner" ng-show="signupForm.loading" ></span>
+        <span ng-show="signupForm.loading">Preparing your new account...</span>
+      </button>
+
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+    </section>
+  </div>
+<!-- content end-->      
+
+                    
