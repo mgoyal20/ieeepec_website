@@ -19,7 +19,7 @@
         <link rel="shortcut icon" href="images/favicon.ico">
     </head>
 
-  <body>
+  <body ng-app="SignupModule" ng-controller="SignupController" ng-cloak>
     <!-- loader -->
     <div class="loader">
       <div id="movingBallG">
@@ -55,6 +55,25 @@
                                 <li><a href="/gallery">Gallery</a></li>
                                 <li><a href="/signup">Membership</a></li>
                                 <li><a href="/contact">Contact Us</a></li>
+                                <li><a>Login</a>
+                                <ul>
+                                    <form ng-submit="submitLoginForm()" id="login-form">
+                                        <div class="form-group">
+                                            <input ng-model="loginForm.email" type="text" placeholder="Email" name="email" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <input ng-model="loginForm.password" type="password" placeholder="Password" name="password" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <span ng-show="!loginForm.loading">Sign in</span>
+                                            <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                                            <span ng-show="loginForm.loading">Signing in...</span>
+                                        </button>
+                                        <a href="/forgotPassword"> Forgot Password?</a>
+                                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                                    </form>
+                                </ul>
+                                </li>
                             </ul>
                         </nav>
                     </div>
