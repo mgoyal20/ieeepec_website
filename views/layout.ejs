@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=typeof title == 'undefined' ? 'New Sails App' : title%></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <!--=============== css  ===============--> 
+        <link type="text/css" rel="stylesheet" href="styles/reset.css">
+        <link type="text/css" rel="stylesheet" href="styles/plugins.css">
+        <link type="text/css" rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="/styles/angular-toastr.css">
+        <link rel="stylesheet" href="/styles/bootstrap.3.1.1.css">
+        <link rel="stylesheet" href="/styles/importer.css">
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="images/favicon.ico">
+
+    <script type="text/javascript">
+    window.SAILS_LOCALS = {
+      _csrf: '<%= _csrf %>',
+    };
+    </script>
+    </head>
+
+  <body ng-app="SignupModule" ng-controller="SignupController" ng-cloak>
+    <!-- loader -->
+    <div class="loader">
+      <div id="movingBallG">
+        <div class="movingBallLineG"></div>
+        <div id="movingBallG_1" class="movingBallG"></div>
+      </div>
+    </div>
+    <!-- loader end -->
+    <!--================= main start ================-->
+        <div id="main">
+          <!--=============== header ===============--> 
+            <header>
+                <!-- header-inner  -->
+                <div class="header-inner">
+                    <!-- header logo -->
+                    <div class="logo-holder">
+                        <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    </div>
+                    <!-- header logo end -->
+                    <!-- mobile nav button -->
+                    <div class="nav-button-holder">
+                        <div class="nav-button vis-m"><span></span><span></span><span></span></div>
+                    </div>
+                    <!-- mobile nav button end -->
+                    <!-- navigation  -->
+                    <div class="nav-holder">
+                        <nav>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About us </a></li>
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/news">News</a></li>
+                                <li><a href="/gallery">Gallery</a></li>                               
+                                <li><a href="/signup">Membership</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                                <% if(session.authenticated){ %>
+                                
+          <li><a>Hello,<%= session.name%></a></li>
+          <li><a href="/yoyo">Sign Out</a></li>
+          <% if(session.authenticated && session.admin){ %>
+          <li><a>Admin Rights</a></li>
+          <% } else{ %>
+            <li><a href="/blog">User Profile</a><li>
+            <% } %>
+          <% } %>
+          <% if(!session.authenticated){ %>
+            <li><a>Sign In</a>
+                                <ul>
+                                    <form ng-submit="submitLoginForm()" id="login-form">
+                                        <div class="form-group">
+                                            <input ng-model="loginForm.email" type="text" placeholder="Email" name="email" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <input ng-model="loginForm.password" type="password" placeholder="Password" name="password" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <span ng-show="!loginForm.loading">Sign in</span>
+                                            <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                                            <span ng-show="loginForm.loading">Signing in...</span>
+                                        </button>
+                                        <a href="/forgotPassword"> Forgot Password?</a>
+                                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                                    </form>
+                                </ul>
+                                </li>  <% } %>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- navigation  end -->
+                </div>
+                <!-- header-inner  end -->
+            </header>
+            <!--=============== wrapper ===============-->  
+            <div id="wrapper">
+                <!-- content-holder  -->
+                <div class="content-holder">
+
+                    <%- body %>
+                    
+                    <!-- content footer-->
+                    <div class="height-emulator"></div>
+                    <footer class="content-footer">
+                        <!--  container  --> 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Footer logo --> 
+                                    <div class="footer-item footer-logo">
+                                        <a href="index.html" class="ajax"><img src="images/footer-logo.png" alt=""></a>
+                                        <p>Our team takes over everything, from an idea and concept development to realization. We believe in traditions and incorporate them within our innovations.Client is the soul of the project.  </p>
+                                    </div>
+                                    <!-- Footer logo end --> 
+                                </div>
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Call</h4>
+                                        <ul>
+                                            <li><a href="#">+7(111)123456789</a></li>
+                                            <li><a href="#">+1(000)987654321</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                                <!-- Footer info --> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Write</h4>
+                                        <ul>
+                                            <li><a href="#">yourmail@domain.com</a></li>
+                                            <li><a href="#">email@website.com</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info-->
+                                <!-- Footer info end--> 
+                                <div class="col-md-2">
+                                    <div class="footer-item">
+                                        <h4 class="text-link">Visit</h4>
+                                        <ul>
+                                            <li><span>USA 27TH BROOKLYN NY</span></li>
+                                            <li> <a href="#" target="_blank">View on map</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Footer info end--> 
+                            </div>
+                            <!-- Footer copyright -->
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="footer-wrap">
+                                        <span class="copyright">  &#169; Monolit   2016.  All rights reserved.  
+                                        </span>
+                                        <span class="to-top">To Top</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Footer copyright end -->
+                        </div>
+                        <!--  container  end --> 
+                        <!-- Hover animation  -->
+                        <canvas class="particular"></canvas>
+                        <!-- Hover animation  end -->
+                    </footer>
+                    <!-- content footer end -->
+                    <!-- share  -->
+                    <div class="share-inner">
+                        <div class="share-container  isShare"  data-share="['facebook','googleplus','twitter','linkedin']"></div>
+                        <div class="close-share"></div>
+                    </div>
+                    <!-- share end -->
+                </div>
+                <!-- content-holder  end-->
+            </div>
+            <!-- wrapper end -->
+            <!-- Fixed footer -->
+            <footer class="fixed-footer">
+                <div class="footer-social">
+                    <ul>
+                        <li><a href="#" target="_blank" ><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#" target="_blank" ><i class="fa fa-tumblr"></i></a></li>
+                    </ul>
+                </div>
+                <!-- Header  title --> 
+                <div class="footer-title">
+                    <h2><a  href="#"></a></h2>
+                </div>
+                <!-- Header  title  end-->
+            </footer>
+            <!-- Fixed footer end-->
+        </div>
+        <!-- Main end -->
+
+    
+    
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.1.3.js"></script>
+    <script src="/js/dependencies/angular-bootstrap-file-field.min.js"></script>
+    <script src="/js/dependencies/angular-toastr.js"></script>
+    <script src="/js/dependencies/compareTo.module.js"></script>
+    <script src="/js/public/signup/SignupModule.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/private/BlogController.js"></script>
+    <script src="/js/private/BlogModule.js"></script>
+    <script src="/js/public/signup/SignupController.js"></script>
+    <script src="/js/scripts.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>
