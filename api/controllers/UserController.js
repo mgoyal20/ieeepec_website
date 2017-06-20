@@ -75,6 +75,7 @@ module.exports = {
     }, function foundUser(err, user) {
       if (err) return res.negotiate(err);
       if (!user) return res.notFound();
+      if (!user.verified) return res.notFound();
 
       // Compare password attempt from the form params to the encrypted password
       // from the database (`user.password`)
@@ -90,7 +91,7 @@ module.exports = {
         // If the password from the form params doesn't checkout w/ the encrypted
         // password from the database...
         incorrect: function (){
-          return res.notFound();
+          return res.badRequest();
         },
 
         success: function (){
@@ -142,7 +143,7 @@ module.exports = {
       if(!req.session.verified)
         return res.forbidden();
       
-      return res.redirect('/blog');
+      return res.redirect('/profile');
     }
 
     User.find(function foundUsers (err, users){
@@ -249,11 +250,98 @@ module.exports = {
 
     User.findOne(req.session.me, function(err, user){
       res.locals.layout = 'user/layoutUser';
-      return res.view('user/blog',{ 
+      return res.view('user/profile',{ 
           user:user
       });
     });    
   },
+
+  editProfilePage: function (req, res, next) {
+    
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+
+    if(!req.session.verified) {
+      return res.forbidden();
+    }
+      
+    User.findOne(req.session.me, function(err, user){
+      res.locals.layout = 'user/layoutUser';
+      return res.view('user/edit',{ 
+          user:user
+      });
+    });
+  },
+
+  editProfile: function(req, res) {
+
+    User.findOne(req.session.me
+      ).exec({
+      // An unexpected error occurred.
+      error: function(err) {
+        return res.negotiate(err);
+      },
+      // OK.
+      success: function(user) { 
+        // Create a User with the params sent from
+        // the sign-up form --> signup.ejs
+        User.update(req.session.me,{
+          name: req.param('name'),
+          sid: req.param('sid'),
+          year: req.param('year'),
+          branch: req.param('branch'),
+          membership: req.param('membership'),
+          phone: req.param('phone'),
+          email: req.param('email'),
+          lastLoggedIn: new Date(),
+        }, 
+        function userUpdated(err, user) {
+          if (err) {
+            console.log("err: ", err);
+            console.log("err.invalidAttributes: ", err.invalidAttributes);
+
+            // If this is a uniqueness error about the email attribute,
+            // send back an easily parseable status code.
+            if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
+            && err.invalidAttributes.email[0].rule === 'unique') {
+              return res.emailAddressInUse();
+            }
+
+            // Otherwise, send back something reasonable as our error response.
+            return res.negotiate(err);
+          }
+
+          // Send back the id of the new user
+          return res.ok(); 
+        });   
+      }
+    });
+  },
+
+  profilePic: function(req, res) {
+      var images = req.param('images[]') ? req.param('images[]') : [];
+      var paramObj = {
+        images: images
+      }
+      
+      User.update(req.session.me, paramObj, function (err, user) {
+        if (err) {
+          sails.log.error(err);
+        } else {      
+          //UPLOAD
+          image.uploadProfilePic(req, user[0], function(err, user){
+            if(err){
+              console.log('ERROR IMAGE');
+              console.log(err);
+            }else{
+              return res.redirect('/profile'); 
+            }
+          });
+        }
+      });
+      
+    },
 
 };
 

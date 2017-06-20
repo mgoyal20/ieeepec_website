@@ -84,6 +84,41 @@ module.exports = {
           callback(null, gallery);
         } 
       });
+  },
+
+  uploadProfilePic: function(req, user, callback){
+    var Jimp = require("jimp");
+    var rootPath = sails.config.appPath + '/assets';
+          
+      req.file('imagesUploader').upload({
+        dirname: rootPath + '/images/upload/profile'
+      },
+      function whenDone(err, uploadedFiles) {
+        if (err) {
+          sails.log.error(err);
+          callback(err, null);
+        }else{
+
+          async.each(uploadedFiles, function(uploadedFile, callback) {
+            var filePath = uploadedFile.fd.split('/');
+            var filename = filePath[filePath.length-1].split('.');
+            var name = filename[0];
+            var ext = filename[1];
+            var file = name + "." + ext;
+            
+            user.images.push('/images/upload/profile/' + file);
+
+          }, function(err){
+              if( err ) {
+                console.log('Image & crop ERROR');
+              }
+          });
+          
+          user.save();
+          
+          callback(null, user);
+        } 
+      });
   }
   
 }

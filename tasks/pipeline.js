@@ -34,7 +34,7 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/private/BlogModule.js',
+  'js/private/ProfileModule.js',
   'js/admin/HandleModule.js',
   'js/public/signup/SignupModule.js',
   'js/**/*.js'

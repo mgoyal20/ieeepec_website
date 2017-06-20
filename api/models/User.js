@@ -59,7 +59,11 @@ module.exports = {
     verified: {
       type: 'boolean',
       defaultsTo: false
-    }
+    },
+
+    images: { 
+      type: 'array'
+    },
   }
 };
 

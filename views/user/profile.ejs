@@ -1,0 +1,95 @@
+<!-- Page title -->
+    <div class="dynamic-title"><%= user.name%></div>
+<!-- Page title  end--> 
+<!-- content  -->
+    <div class="content">
+        <section class="parallax-section">
+        <div class="parallax-inner">
+            <div class="bg" data-bg="images/bg/17.jpg" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2> Your <strong> Profile </strong></h2>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="creat-list">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="signup.html">Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+<!-- content end -->
+
+<!-- content -->
+<div class="content">
+    <section>
+        <div class="container">
+            <div class="row">
+                <!-- Articels -->
+                <div class="col-md-8">
+                    <article>
+                        <h2 class="section-title dec-title"><span>Create A Blog </span></h2>
+                        <form ng-submit="submitblogForm()" id="blog-form" class="form-blog" name="blog">
+                            <!-- T I T L E -->
+                            <div class="col-md-12"><label>Title</label></div>
+                            <div class="control-group form-group col-md-12" ng-class="{'has-error':blog.name.$invalid && blog.name.$dirty}">
+                                <input type="text" class="form-control" placeholder="e.g. Nikola Tesla" name="title" ng-model="blogForm.title" ng-maxlength="50" required>
+                                <span class="help-block has-error" ng-if="blog.name.$dirty">
+                                    <span ng-show="blog.name.$error.required">Name is required.</span>
+                                    <span ng-show="blog.name.$error.maxlength">The name cannot be more than 50 characters.</span>
+                                </span>
+                            </div>
+                            <textarea name="description" cols="97" rows="10"></textarea>
+                            <br>
+                                                
+                            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                        </form>
+                    </article>
+                </div>
+                <!-- Articels end-->
+
+                <!-- sidebar -->
+                    <div class="col-md-4">
+                        <div class="sidebar">  
+                            <div class="widget">
+                                <h3>About </h3>
+                            </div>                                          
+                            <div class="widget">
+                                <div class="clearfix"></div>
+                                <img src="<%= image.getSize(image.getFirst(user.images)) %>" class="img-responsive img-thumbnail" alt="" style="width:100%">
+                                <form role="form" action="/user/profilePic" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <input type="file" name="imagesUploader" required>
+                                    </div>
+                                    <div class="buttonsContainer">
+                                        <button type="submit" class="btn btn-primary">Edit Profile Pic</button>
+                                    </div>
+                                    <div></div>
+                                </form>
+                            </div>
+                            <div class="widget">
+                                <table class="table">
+                                <tr><td><b>NAME</b></td><td><%= user.name%></td></tr>
+                                <tr><td><b>SID</b></td><td><%= user.sid%></td></tr>
+                                <tr><td><b>BRANCH</b></td><td><%= user.branch%></td></tr>
+                                <tr><td><b>EMAIL</b></td><td><%= user.email%></td></tr>
+                                <tr><td><b>CONTACT NO.</b></td><td><%= user.phone%></td></tr>
+                                <tr><td><b>MEMBERSHIP NO.</b></td><td><%= user.membership%></td></tr>
+                                <tr><td><a href="/edit" class="btn btn-primary">Edit Profile</a></td><td></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <!-- sidebar end-->
+            </div>
+        </div>
+    </section>
+</div>
+<!-- content  end-->	                			

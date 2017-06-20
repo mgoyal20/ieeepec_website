@@ -1,0 +1,111 @@
+<!-- content  -->
+  <div class="content">
+    <section>
+    <!-- EDIT FORM --> 
+    <form ng-submit="submitEditForm()" id="sign-up-form" class="form-signin" name="edit" >
+      <h2 class="form-signin-heading">Update your account</h2>
+      <div class="row">
+
+        <!-- N A M E -->
+        <div class="col-md-12"><label>Your full name</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.name.$invalid && edit.name.$dirty}">
+          <input type="text" class="form-control" placeholder="Your Name" name="name" ng-init="editForm.name = '<%if(typeof user.name !== "undefined"){%><%=user.name%><%}%>'" ng-model="editForm.name" ng-maxlength="50" required>
+          <span class="help-block has-error" ng-if="edit.name.$dirty">
+            <span ng-show="edit.name.$error.required">Name is required.</span>
+            <span ng-show="edit.name.$error.maxlength">The name cannot be more than 50 characters.</span>
+          </span>
+        </div>
+
+        <!-- S I D -->
+        <div class="col-md-12"><label>Your SID</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.sid.$invalid && edit.sid.$dirty}">
+          <input type="phone" class="form-control" placeholder="e.g. 15103087" name="sid" ng-init="editForm.sid = '<%if(typeof user.sid !== "undefined"){%><%=user.sid%><%}%>'" ng-model="editForm.sid" ng-maxlength="8" ng-minlength="8" required>
+          <span class="help-block has-error" ng-if="edit.sid.$dirty">
+            <span ng-show="edit.sid.$error.required">SID is required.</span>
+            <span ng-show="edit.sid.$error.maxlength">Invalid SID</span>
+            <span ng-show="edit.sid.$error.minlength">The SID should be of 8 digits.</span>
+          </span>
+        </div>
+
+        <!-- Y E A R -->
+        <div><label>Your Year</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.year.$invalid && edit.year.$dirty}">
+          <select type="number" class="form-control" placeholder="" name="year" ng-init="editForm.year = '<%if(typeof user.year !== "undefined"){%><%=user.year%><%}%>'" ng-model="editForm.year" required>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+          </select>
+          <span class="help-block has-error" ng-if="edit.year.$dirty">
+            <span ng-show="edit.year.$error.required">Year is required.</span>
+          </span>
+        </div>
+
+        <!-- B R A N C H -->
+        <div><label>Your Branch</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.branch.$invalid && edit.branch.$dirty}">  
+          <select type="text" class="form-control" placeholder="Branch" ng-init="editForm.branch = '<%if(typeof user.branch !== "undefined"){%><%=user.branch%><%}%>'" name="branch" ng-model="editForm.branch" required>
+            <option value="AERO">Aeronautical</option>
+            <option value="CIVIL">Civil</option>
+            <option value="CSE">Computer Science</option>
+            <option value="ELEC">Electrical</option>
+            <option value="ECE">Electronics & Comm.</option>
+            <option value="MECH">Mechanical</option>
+            <option value="META">Metallurgy</option>
+            <option value="PROD">Production</option>
+          </select>
+          <span class="help-block has-error" ng-if="edit.branch.$dirty">
+            <span ng-show="edit.branch.$error.required">Branch is required.</span>
+          </span>
+        </div>
+
+        <!-- M E M B E R S H I P -->
+        <div class="col-md-12"><label>Your Membership Number</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.membership.$invalid && edit.membership.$dirty}">
+          <input type="phone" class="form-control" placeholder="e.g. 12345678" ng-init="editForm.membership = '<%if(typeof user.membership !== "undefined"){%><%=user.membership%><%}%>'" name="membership" ng-model="editForm.membership" ng-maxlength="8" ng-minlength="8" required>
+          <span class="help-block has-error" ng-if="edit.membership.$dirty">
+            <span ng-show="edit.membership.$error.required">Membership Number is required.</span>
+            <span ng-show="edit.membership.$error.maxlength">Invalid Membership Number</span>
+            <span ng-show="edit.membership.$error.minlength">The number should be of 8 digits</span>
+          </span>
+        </div>
+
+        <!-- E M A I L -->
+        <div class="col-md-12"><label>Your email address</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.email.$invalid && edit.email.$dirty}">
+          <input type="email" class="form-control" placeholder="nikola@tesla.com" ng-init="editForm.email = '<%if(typeof user.email !== "undefined"){%><%=user.email%><%}%>'" name="email" ng-model="editForm.email" required >
+          <span class="help-block has-error" ng-if="edit.email.$dirty">
+            <span ng-show="edit.email.$error.required">Email address is required.</span>
+            <span ng-show="edit.email.$error.email">Not a valid email address.</span>
+          </span>
+        </div>
+
+        <!-- P H O N E -->
+        <div class="col-md-12"><label>Your Contact Number</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':edit.phone.$invalid && edit.phone.$dirty}">
+          <input type="phone" class="form-control" placeholder="e.g. 9999999999" ng-init="editForm.phone = '<%if(typeof user.phone !== "undefined"){%><%=user.phone%><%}%>'" name="phone" ng-model="editForm.phone" ng-maxlength="10" ng-mainlength="10" required>
+          <span class="help-block has-error" ng-if="edit.phone.$dirty">
+            <span ng-show="edit.phone.$error.required">Contact Number is required.</span>
+            <span ng-show="edit.phone.$error.maxlength">Invalid number</span>
+            <span ng-show="edit.phone.$error.minlength">The number should be of 10 digits.</span>
+          </span>
+        </div>
+
+      </div>
+
+      <br/>
+
+      <!-- Disable edit button until the form has no errors -->
+      <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="edit.$invalid">
+        <span ng-show="!editForm.loading">Update Account</span>
+        <span class="overlord-loading-spinner fa fa-spinner" ng-show="editForm.loading" ></span>
+        <span ng-show="editForm.loading">Updating your account...</span>
+      </button>
+
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+    </section>
+  </div>
+<!-- content end-->      
+
+                    
