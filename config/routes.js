@@ -40,8 +40,21 @@ module.exports.routes = {
   // 'GET /gallery': {view: 'gallery'},
   // 'GET /contact': {view: 'contact'},
 
+  'GET /blog': 'UserController.profile',
+
+  'GET /handleGallery': 'GalleryController.handleGallery',
+
+  'GET /handleEvents': 'EventController.handleEvents',
+  'POST /addEvent': 'EventController.addEvent',
+
+  'GET /handleNews': 'NewsController.handleNews',
+  'POST /addNews': 'NewsController.addNews',
+
   'POST /signup': 'UserController.signup',
   'PUT /login': 'UserController.login',
+  'GET /logout': 'UserController.logout',
+  'GET /handleUsers': 'UserController.handleUsers',
+  'GET /handleNewUsers': 'UserController.handleNewUsers',
 
   /***************************************************************************
   *                                                                          *

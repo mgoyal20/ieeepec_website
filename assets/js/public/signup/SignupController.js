@@ -53,7 +53,7 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
     })
     .then(function onSuccess (){
       // Refresh the page now that we've been logged in.
-      window.location = '/';
+      window.location = '/handleUsers';
     })
     .catch(function onError(sailsResponse) {
 

@@ -1,0 +1,10 @@
+<div class="container">	
+	<form action="/event/update/<%= event.id %>" method="POST" class="form-signin">
+		<h2> Hey, you're editing an event... </h2>
+
+		<input value="<%= event.name %>" name="name" type="text" class="form-control"/>
+		<input value="<%= event.description %>" name="description" type="text" class="form-control"/>
+		<input type="submit" value="Proceed" class="btn btn-lg btn-primary btn-block"/>
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	</form>
+</div>

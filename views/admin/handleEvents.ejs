@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Events List</h2>
+  <table class='table'>
+    <tr>
+      <th>S.No.</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <% var count=0; %>
+    <% _.each(events, function(event) { count++; %>
+      <tr data-id="<%= event.id %>" data-model="event">
+        <td><%= count %></td>
+        <td><%= event.name %></td>
+        <td><%= event.description %></td>
+        <td><a href="event/edit/<%= event.id %>" class="btn btn-sm btn-warning">Edit</a></td>
+        <td><form action="/event/destroy/<%= event.id %>" method="POST">
+          <input type="hidden" name="_method" value="delete"/>
+          <input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+          <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        </form></td>
+      </tr> 
+    <% }) %>
+  </table>
+
+    <form ng-submit="submitAddEventForm()" id="sign-up-form" class="form-signin" name="addEvent" >
+      <h3 class="form-signin-heading">Add Event</h3>
+      <div class="row">
+
+        <!-- N A M E -->
+        <div class="col-md-12"><label>Event name</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':addEvent.name.$invalid && addEvent.name.$dirty}">
+          <input type="text" class="form-control" placeholder="e.g. Nikola Tesla" name="name" ng-model="addEventForm.name" ng-maxlength="50" required>
+          <span class="help-block has-error" ng-if="addEvent.name.$dirty">
+            <span ng-show="addEvent.name.$error.required">Name is required.</span>
+            <span ng-show="addEvent.name.$error.maxlength">The name cannot be more than 50 characters.</span>
+          </span>
+        </div>
+
+        <!-- D E S C R I P T I O N -->
+        <div class="col-md-12"><label>Event Description</label></div>
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':addEvent.description.$invalid && addEvent.description.$dirty}">
+          <input type="text" class="form-control" placeholder="Description" name="description" ng-model="addEventForm.description" ng-maxlength="1000" required>
+          <span class="help-block has-error" ng-if="addEvent.description.$dirty">
+            <span ng-show="addEvent.description.$error.required">description is required.</span>
+            <span ng-show="addEvent.description.$error.maxlength">The description cannot be more than 1000 characters.</span>
+          </span>
+        </div>      
+
+      </div>
+
+      <br/>
+
+      <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="addEvent.$invalid">
+        <span ng-show="!addEventForm.loading">Add Event</span>
+        <span class="overlord-loading-spinner fa fa-spinner" ng-show="addEventForm.loading" ></span>
+        <span ng-show="addEventForm.loading">Adding your new event...</span>
+      </button>
+
+    </form>
+</div>

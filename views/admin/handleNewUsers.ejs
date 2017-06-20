@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>New Users</h2>
+  <table class='table'>
+    <tr>
+      <th>S.No.</th>
+      <th>Name</th>
+      <th>SID</th>
+      <th>Year</th>
+      <th>Branch</th>
+      <th>Membership</th>
+      <th>Contact</th>
+      <th>Email</th>
+      <th>Verify</th>
+      <th>Delete</th>
+    </tr>
+    <% var count=0; %>
+    <% _.each(users, function(user) { %>
+      <% if(!user.verified) { count++; %>
+        <tr data-id="<%= user.id %>" data-model="user">
+          <td><%= count %></td>
+          <td><%= user.name %></td>
+          <td><%= user.sid %></td>
+          <td><%= user.year %></td>
+          <td><%= user.branch %></td>
+          <td><%= user.membership %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.email %></td>
+          <td><a href="user/verify/<%= user.id %>" class="btn btn-sm btn-success">Verify</a></td>
+          <td><form action="/user/destroy/<%= user.id %>" method="POST">
+            <input type="hidden" name="_method" value="delete"/>
+            <input type="submit" class="btn btn-sm btn-danger" value="Delete"/>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          </form></td>
+        </tr>
+      <% } %>  
+    <% }) %>
+    </table>
+</div>

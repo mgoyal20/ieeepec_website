@@ -54,6 +54,11 @@ module.exports = {
     admin: {
       type: 'boolean',
       defaultsTo: false
+    },
+
+    verified: {
+      type: 'boolean',
+      defaultsTo: false
     }
   }
 };

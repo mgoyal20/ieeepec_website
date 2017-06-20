@@ -1,0 +1,58 @@
+<div class="container">
+<form role="form" action="/gallery/create" method="post" enctype="multipart/form-data">
+
+<%if(gallery[i].images && typeof gallery.images !== "undefined"){%>
+<h3>Images: <%= gallery[i].images.length %></h3>
+
+<% if(gallery.images.length){%>
+<div class="well">
+ <div class="row">
+  <% for(var i = 0; i < gallery.images.length; i++){ %>
+    <div id="img<%= i%>" class="col-sm-3">
+      <img src="<%= image.getSize(gallery.images[i]) %>" class="img-thumbnail img-responsive">
+      <input type="hidden" name="images[]" value="<%= gallery.images[i] %>">
+      <br>
+      <a href="javascript:$('#img<%= i%>').remove()">Delete</a>
+    </div>
+  <% } %>
+  </div>
+</div>
+<% } %>
+<% } %>
+
+<div class="form-group">
+<input type="file" name="imagesUploader" multiple>
+</div>
+  
+<div class="buttonsContainer">
+  <button type="submit" class="btn btn-primary">Add Images</button>
+</div>
+</form>
+</div>
+
+<div class="container">
+  <h2>Gallery List</h2>
+  <table class='table'>
+    <% for(var i in gallery) { %>
+      <tr data-id="<%= gallery[i].id %>" data-model="gallery">
+        <% for( var j=0; j<gallery[i].images.length; j++){ %>
+          <tr>
+            <td style="width:40%"><img src="<%= image.getSize(gallery[i].images[j++]) %>" class="img-responsive" alt=""></td>
+            <% if(j<gallery[i].images.length) { %>
+              <td style="width:40%"><img src="<%= image.getSize(gallery[i].images[j]) %>" class="img-responsive" alt=""></td>
+            <% } %>
+            <% if(j>=gallery[i].images.length) { %>
+              <td></td>
+            <% } %>
+          </tr>
+        <% } %>
+        <td><a href="/gallery/destroy/<%=gallery[i].id%>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a></td>
+        <td></td>
+        <tr><td></td><td></td></tr>
+      </tr> 
+      <tr></tr>
+    <% } %>
+  </table>
+</div>
+
+</div>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Control</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <!--=============== css  ===============--> 
+        <link type="text/css" rel="stylesheet" href="styles/reset.css">
+        <link type="text/css" rel="stylesheet" href="styles/plugins.css">
+        <link type="text/css" rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="/styles/angular-toastr.css">
+        <link rel="stylesheet" href="/styles/bootstrap.3.1.1.css">
+        <link rel="stylesheet" href="/styles/importer.css">
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="images/favicon.ico">
+
+    <script type="text/javascript">
+    window.SAILS_LOCALS = {
+      _csrf: '<%= _csrf %>',
+    };
+    
+    </script>
+    </head>
+
+  <body ng-app="HandleModule" ng-controller="HandleController" ng-cloak>
+    
+    <div class="container-fluid">
+      <!-- Creates the navbar -->
+      <nav class="navbar navbar-default navbar-inverse">
+        <!-- This creates the mechanism for collapse button -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <!-- This controls the number of lines in the image when the nav collapse -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <!-- This is the brand on the left-hand side. -->
+        <a class="navbar-brand">Admin Controller</a>
+        <!-- This is what is the above collapse button points to when the mark-up below is collapsed -->
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+          <!-- This is what "styles" the li's as navbar items -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/handleUsers">Existing Users</a></li>
+            <li><a href="/handleNewUsers">New Users</a></li>  
+            <li><a href="/handleNews">News</a></li>
+            <li><a href="/handleEvents">Events</a></li>
+            <li><a href="/handleGallery">Gallery</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+       
+    <%- body %>                                       
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.1.3.js"></script>
+    <script src="/js/dependencies/angular-bootstrap-file-field.min.js"></script>
+    <script src="/js/dependencies/angular-toastr.js"></script>
+    <script src="/js/dependencies/compareTo.module.js"></script>
+    <script src="/js/private/BlogModule.js"></script>
+    <script src="/js/admin/HandleModule.js"></script>
+    <script src="/js/public/signup/SignupModule.js"></script>
+    <script src="/js/admin/HandleController.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/private/BlogController.js"></script>
+    <script src="/js/public/signup/SignupController.js"></script>
+    <script src="/js/scripts.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

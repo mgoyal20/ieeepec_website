@@ -52,6 +52,7 @@ module.exports.bootstrap = function(done) {
           phone: "1234567890",
           email: "admin@admin.com",
           admin: true,
+          verified: true,
           encryptedPassword: encryptedPassword,
           lastLoggedIn: new Date(),
         }).exec(function (err){

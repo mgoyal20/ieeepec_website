@@ -2065,6 +2065,10 @@ caption {
 }
 th {
   text-align: left;
+  font-weight: bold;
+}
+td {
+  text-align: left;
 }
 .table {
   width: 100%;
@@ -3703,7 +3707,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #555;
   cursor: default;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-bottom-color: transparent;
 }
 .nav-tabs.nav-justified {

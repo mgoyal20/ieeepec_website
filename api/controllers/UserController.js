@@ -56,6 +56,7 @@ module.exports = {
           // Log user in
       	  req.session.me = newUser.id;
           req.session.admin = newUser.admin;
+          req.session.verified = newUser.verified;
 
           // Send back the id of the new user
           return res.json({
@@ -96,9 +97,9 @@ module.exports = {
 
           // Store user id in the user session
           req.session.me = user.id;
+          //req.session.name = user.name;
           req.session.admin = user.admin;
-
-           //console.log(req.session);
+          req.session.verified = user.verified;
 
           // All done- let the client know that everything worked.
           return res.ok();
@@ -107,6 +108,152 @@ module.exports = {
     });
   },
 
+  logout: function (req, res) {
+
+    // Look up the user record from the database which is
+    // referenced by the id in the user session (req.session.me)
+    User.findOne(req.session.me, function foundUser(err, user) {
+      if (err) return res.negotiate(err);
+
+      // If session refers to a user who no longer exists, still allow logout.
+      if (!user) {
+        sails.log.verbose('Session refers to a user who no longer exists.');
+        res.locals.layout = 'layout';
+        return res.redirect('/');
+      }
+
+      // Wipe out the session (log out)
+      req.session.me = null;
+
+      // Either send a 200 OK or redirect to the home page
+      res.locals.layout = 'layout';
+      return res.redirect('/');
+
+    });
+  },
+
+  handleUsers: function (req, res, next) {
+    
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+
+    if(!req.session.admin){
+      if(!req.session.verified)
+        return res.forbidden();
+      
+      return res.redirect('/blog');
+    }
+
+    User.find(function foundUsers (err, users){
+      if (err) {
+        return res.negotiate(err);
+      }
+
+      if (!users) {
+        sails.log.verbose('Session refers to a user who no longer exists- did you delete a user, then try to refresh the page with an open tab logged-in as that user?');
+        return res.view('homepage');
+      }
+
+      res.locals.layout = 'admin/layoutAdmin';
+      return res.view('admin/handleUsers', {
+        users: users
+      });
+
+    });
+  },
+
+  handleNewUsers: function (req, res, next) {
+    
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+
+    if(!req.session.admin){
+      return res.forbidden();
+    }
+
+    User.find(function foundUsers (err, users){
+      if (err) {
+        return res.negotiate(err);
+      }
+
+      if (!users) {
+        sails.log.verbose('Session refers to a user who no longer exists- did you delete a user, then try to refresh the page with an open tab logged-in as that user?');
+        return res.view('homepage');
+      }
+
+      res.locals.layout = 'admin/layoutAdmin';
+      return res.view('admin/handleNewUsers', {
+        users: users
+      });
+
+    });
+  },
+
+  verify: function (req, res) {
+    
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+
+    if(!req.session.admin){
+      return res.forbidden();
+    }
+
+    var UsrObj = {
+      verified: true,
+    }
+
+    User.update(req.param('id'), UsrObj, function userUpdated (err) {
+      if (err) {
+        return res.negotiate(err);
+      }
+
+      return res.redirect('/handleNewUsers');
+    });
+  },
+
+  destroy: function (req, res, next) {
+
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+
+    if(!req.session.admin){
+      return res.forbidden();
+    }
+
+    User.findOne(req.param('id'), function foundUser (err, user) {
+      if (err) return next(err);
+
+      if (!user) return next('User doesn\'t exist.');
+
+      User.destroy(req.param('id'), function userDestroyed(err) {
+        if (err) return next(err);
+
+      });
+
+      res.redirect('/handleUsers');  
+      
+    });
+  },
+
+  profile: function (req, res) {
+    if (!req.session.me) {
+      return res.view('homepage');
+    }
+    if (!req.session.verified) {
+      return forbidden();
+    }
+
+    User.findOne(req.session.me, function(err, user){
+      res.locals.layout = 'user/layoutUser';
+      return res.view('user/blog',{ 
+          user:user
+      });
+    });    
+  },
 
 };
 

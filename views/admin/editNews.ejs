@@ -1,0 +1,9 @@
+	<form action="/news/update/<%= news.id %>" method="POST" class="form-signin">
+		<h2> Hey, you're editing a news... </h2>
+
+		<input value="<%= news.title %>" name="title" type="text" class="form-control"/>
+		<input value="<%= news.description %>" name="description" type="text" class="form-control"/>
+	
+		<input type="submit" value="Proceed" class="btn btn-lg btn-primary btn-block"/>
+		<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	</form>
