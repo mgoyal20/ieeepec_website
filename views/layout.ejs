@@ -75,9 +75,23 @@
                                             <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
                                             <span ng-show="loginForm.loading">Signing in...</span>
                                         </button>
-                                        <a href="/forgotPassword"> Forgot Password?</a>
                                         <input type="hidden" name="_csrf" value="<%= _csrf %>" />
                                     </form>
+                                    <li><a>Forgot Password?</a>
+                                    <ul>
+                                    <form ng-submit="submitForgotForm()" id="login-form">
+                                        <div class="form-group">
+                                            <input ng-model="forgotForm.email" type="text" placeholder="Email" name="email" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">
+                                            <span ng-show="!loginForm.loading">Verify Email</span>
+                                            <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                                            <span ng-show="loginForm.loading">Verifying Email...</span>
+                                        </button>
+                                        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                                    </form>
+                                    </ul>
+                                    </li>
                                 </ul>
                                 </li>
                             </ul>

@@ -60,7 +60,7 @@ module.exports = {
             //   imgThumb.resize(150, Jimp.AUTO).write(fname2, function(){
             //     fs.createReadStream(fname2).pipe(fs.createWriteStream(fname2.replace('/assets', '/.tmp/public')));
             //   });
-              
+                                                                                                                                                                    
             //   var fname3 = rootPath + '/images/upload/' + name + "-crop-med." + ext;
             //   imgCrop.cover(400,400).write(fname3, function(){
             //     fs.createReadStream(fname3).pipe(fs.createWriteStream(fname3.replace('/assets', '/.tmp/public')));
