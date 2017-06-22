@@ -37,7 +37,8 @@ module.exports.routes = {
   // 'GET /about': {view: 'about'},
   // 'GET /events': {view: 'events'},
   // 'GET /news': {view: 'news'},
-  // 'GET /gallery': {view: 'gallery'},
+  'GET /news': 'PublicPageController.news',
+  'GET /gallery': 'PublicPageController.gallery',
   // 'GET /contact': {view: 'contact'},
 
   'GET /handleGallery': 'GalleryController.handleGallery',

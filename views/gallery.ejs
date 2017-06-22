@@ -1,0 +1,54 @@
+<!-- Page title -->
+    <div class="dynamic-title">Boxed Gallery</div>
+<!-- Page title  end--> 
+
+<!-- content  -->
+    <div class="content">
+        <section class="parallax-section">
+            <div class="parallax-inner">
+                <div class="bg" data-bg="images/bg/17.jpg" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);"></div>
+                <div class="overlay"></div>
+            </div>
+            <div class="container">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Project <strong> title </strong></h2>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="creat-list">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="portfolio4.html">Portfolio</a></li>
+                                <li><a href="portfolio-single5.html">Portfolio single</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>                    
+<!-- content end -->
+
+<!-- content  -->
+    <div class="content">
+        <section>
+            <div class="container">
+                <div class="gallery-items   three-columns grid-small-pad lightgallery">
+
+                    <% for(var i=0; i<gallery.length; i++) { %>
+                        <div class="gallery-item" data-id="<%= gallery[i].id %>" data-model="gallery">
+                            <div class="grid-item-holder">
+                                <div class="box-item" >
+                                    <a data-src="<%= image.getSize(image.getFirst(gallery[i].images)) %>" class="popup-image" data-sub-html="alteration in some">
+                                        <span class="overlay"></span> 
+                                        <img  src="<%= image.getSize(image.getFirst(gallery[i].images)) %>"   alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>                                   
+                </div>
+            </div>
+        </section>
+    </div>
+<!-- content end -->
