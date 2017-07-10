@@ -4060,6 +4060,20 @@ p {
 	background-position:center;
 }
 }
+#toggle{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+#xyz span{
+    display: none;
+}
+
+#toggle:checked + span{
+    display: block;
+}
+
 #login-form{
 	padding: 10px;
 }

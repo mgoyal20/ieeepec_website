@@ -17,8 +17,8 @@ $("#map-canvas").gmap3({
         action: "init",
         marker: {
             values: [ {
-                latLng: [ 40.7143528, -74.0059731 ],
-                data: "Our office  - New York City",
+                latLng: [ 30.766725, 76.787159 ],
+                data: "PEC University of Technology, Chandigarh",
                 options: {
                     icon: "images/marker.png"
                 }

@@ -32,7 +32,7 @@ module.exports = {
   addNews: function (req, res) {
   	News.create({
       title: req.param('title'),
-      description: req.param('description'),
+      description: req.param('description')
     }).exec(function (err) {
       if (err) {
         console.log("err: ", err);
